@@ -1,2 +1,4 @@
-PJ dataset2/
-# Ignore all files in the dataset2 directory
+data/
+preprocess/
+# Ignore all files in the data directory
+# Ignore all files in the preprocess directory
