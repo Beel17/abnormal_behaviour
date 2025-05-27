@@ -1,3 +1,9 @@
+import os
+os.environ['SDL_AUDIODRIVER'] = 'dummy'  # Use dummy audio driver to bypass audio init issues
+
+import pygame
+pygame.mixer.init()
+
 import streamlit as st
 import cv2
 import numpy as np
@@ -9,7 +15,6 @@ import datetime
 import os
 from streamlit_extras.let_it_rain import rain
 import threading
-import pygame
 from collections import deque
 
 # Load model and setup
