@@ -1,8 +1,8 @@
 streamlit
 tensorflow
-opencv-python-headless
-pandas
+opencv-python
 numpy
+pandas
 pygame
 streamlit-extras
 
