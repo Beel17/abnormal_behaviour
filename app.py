@@ -1,9 +1,5 @@
 import os
-os.environ['SDL_AUDIODRIVER'] = 'dummy'  # Use dummy audio driver to bypass audio init issues
-
 import pygame
-pygame.mixer.init()
-
 import streamlit as st
 import cv2
 import numpy as np
@@ -23,11 +19,23 @@ classes = ['accident', 'explosion', 'fall', 'fire', 'guns', 'normal']
 if not os.path.exists("history.csv"):
     pd.DataFrame(columns=["timestamp", "predicted_class", "confidence"]).to_csv("history.csv", index=False)
 
+local_mode = True
+if local_mode:
+    import pygame
+    pygame.mixer.init()
+    def alert_sound():
+        pygame.mixer.music.load("assets/sos-signal-137144.mp3")
+        pygame.mixer.music.play()
+else:
+    def alert_sound():
+        pass  # Skip sound in deployment
+
+
 # Audio alert setup
-pygame.mixer.init()
-def alert_sound():
-    pygame.mixer.music.load("assets\\sos-signal-137144.mp3")
-    pygame.mixer.music.play()
+# pygame.mixer.init()
+# def alert_sound():
+#     pygame.mixer.music.load("assets\\sos-signal-137144.mp3")
+#     pygame.mixer.music.play()
 
 # Smoothing window
 smoothing_window = deque(maxlen=5)
